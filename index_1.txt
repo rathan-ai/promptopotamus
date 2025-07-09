@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Ultimate Prompting Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        aside {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #94a3b8;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+        /* Style for the active navigation link */
+        .nav-link.active {
+            background-color: #f0f9ff;
+            color: #0369a1;
+            font-weight: 600;
+        }
+        /* Custom styles for form elements */
+        .form-label {
+            @apply block mb-2 text-sm font-medium text-slate-600;
+        }
+        .form-input, .form-textarea {
+            @apply block w-full px-4 py-3 bg-white border border-slate-300 rounded-lg text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-sky-400 transition-all duration-200;
+        }
+        .form-textarea {
+            min-height: 120px;
+        }
+        .base-btn {
+             @apply font-bold py-2.5 px-4 rounded-lg transition-colors duration-200 flex items-center justify-center gap-2;
+        }
+        .generate-btn {
+            @apply base-btn w-full bg-slate-600 text-white hover:bg-slate-700;
+        }
+        .gemini-btn {
+            @apply base-btn w-full bg-gradient-to-r from-sky-500 to-indigo-500 text-white hover:from-sky-600 hover:to-indigo-600;
+        }
+        .copy-btn {
+            @apply bg-slate-200 text-slate-700 px-3 py-1 rounded-md text-sm font-medium hover:bg-slate-300 transition;
+        }
+        .section-separator {
+            @apply border-t-2 border-slate-200 my-16;
+        }
+        /* Loading spinner */
+        .loader {
+            width: 18px;
+            height: 18px;
+            border: 2px solid #FFF;
+            border-bottom-color: transparent;
+            border-radius: 50%;
+            display: inline-block;
+            box-sizing: border-box;
+            animation: rotation 1s linear infinite;
+        }
+
+        @keyframes rotation {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <div class="flex flex-col md:flex-row min-h-screen">
+        <!-- Sidebar Navigation -->
+        <aside class="w-full md:w-72 bg-white border-r border-slate-200 p-4">
+            <div class="flex items-center gap-3 mb-8 p-2">
+                 <div class="bg-sky-500 p-2 rounded-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bot"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
+                </div>
+                <h1 class="text-xl font-bold text-slate-900">Prompting Guide</h1>
+            </div>
+            <nav id="navigation" class="space-y-1">
+                <h3 class="px-4 pt-4 pb-2 text-xs font-semibold text-slate-400 uppercase">Tools</h3>
+                <a href="#generator" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-100">Prompt Builder</a>
+
+                <h3 class="px-4 pt-4 pb-2 text-xs font-semibold text-slate-400 uppercase">Fundamentals</h3>
+                <a href="#introduction" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-100">Introduction</a>
+                <a href="#basic-techniques" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-100">Basic Techniques</a>
+                <a href="#advanced-techniques" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-100">Advanced Techniques</a>
+                
+                <h3 class="px-4 pt-4 pb-2 text-xs font-semibold text-slate-400 uppercase">Industry-Specific Guides</h3>
+                <a href="#industry-education" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-100">Education</a>
+                <a href="#industry-engineering" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-100">Engineering</a>
+                <a href="#industry-finance" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-100">Finance & Stock Market</a>
+                
+                <h3 class="px-4 pt-4 pb-2 text-xs font-semibold text-slate-400 uppercase">Best Practices</h3>
+                <a href="#best-practices" class="nav-link block px-4 py-2 rounded-lg hover:bg-slate-100">Best Practices</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main id="main-content" class="flex-1 p-6 md:p-10 overflow-y-auto">
+            <section id="generator">
+                <h2 class="text-3xl font-bold text-slate-900 mb-2">Prompt Builder</h2>
+                <p class="text-lg text-slate-600 mb-6">Use the core components of a great prompt to build your own, then let the AI generate the response.</p>
+                
+                <div class="bg-white p-8 rounded-xl border border-slate-200 shadow-sm mb-8">
+                    <div class="space-y-6">
+                        <div>
+                            <label for="generic-persona" class="form-label flex items-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-slate-400"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                                <span>Persona <span class="text-slate-400 font-normal">(Who the AI should be)</span></span>
+                            </label>
+                            <input type="text" id="generic-persona" class="form-input" placeholder="e.g., A witty historian, a helpful travel guide">
+                        </div>
+                        <div>
+                            <label for="generic-task" class="form-label flex items-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-slate-400"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                                <span>Task <span class="text-slate-400 font-normal">(What the AI should do)</span></span>
+                            </label>
+                            <input type="text" id="generic-task" class="form-input" placeholder="e.g., Explain the fall of the Roman Empire">
+                        </div>
+                        <div>
+                            <label for="generic-context" class="form-label flex items-center gap-2">
+                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-slate-400"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><line x1="10" y1="9" x2="8" y2="9"></line></svg>
+                                <span>Context <span class="text-slate-400 font-normal">(Background info, examples)</span></span>
+                            </label>
+                            <textarea id="generic-context" class="form-textarea" placeholder="e.g., Focus on the economic factors. Mention the role of barbarian invasions."></textarea>
+                        </div>
+                        <div>
+                             <label for="generic-format" class="form-label flex items-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-slate-400"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                                <span>Format <span class="text-slate-400 font-normal">(How the output should be structured)</span></span>
+                            </label>
+                            <input type="text" id="generic-format" class="form-input" placeholder="e.g., In three short paragraphs with a humorous tone.">
+                        </div>
+                    </div>
+                    <div class="mt-8">
+                        <button id="gemini-generic-prompt" class="gemini-btn w-full sm:w-auto">✨ Generate Response with AI</button>
+                    </div>
+                </div>
+
+                <div id="generated-prompt-container" class="mt-8"></div>
+                <div id="gemini-response-container" class="mt-8"></div>
+            </section>
+
+            <hr class="section-separator">
+
+            <section id="introduction">
+                 <h2 class="text-3xl font-bold text-slate-900 mb-2">Introduction</h2>
+                <p class="text-lg text-slate-600 mb-6">A prompt is the input you provide to a Large Language Model (LLM) to get a specific output. While anyone can write a prompt, crafting an effective one can be complex. Many aspects affect its efficacy: the model you use, its training data, configurations, your word choice, style, and structure all matter. Therefore, prompt engineering is an iterative process.</p><div class="bg-sky-100 border-l-4 border-sky-500 text-sky-800 p-4 rounded-r-lg"><h3 class="font-bold mb-2">Why Prompt Engineering?</h3><p>Prompt engineering is the process of designing high-quality prompts that guide LLMs to produce accurate and relevant outputs. Inadequate prompts can lead to ambiguous or inaccurate responses, hindering the model's ability to provide meaningful results.</p></div>
+            </section>
+            
+            <hr class="section-separator">
+
+            <section id="basic-techniques">
+                <h2 class="text-3xl font-bold text-slate-900 mb-2">Basic Prompting Techniques</h2>
+                <p class="text-lg text-slate-600 mb-6">These fundamental techniques are the building blocks of effective prompting.</p>
+                <div class="space-y-4">
+                    <div class="p-4 bg-white border rounded-lg shadow-sm">
+                        <h4 class="font-bold text-slate-900">Zero-Shot Prompting</h4>
+                        <p class="text-slate-600 mb-2">The simplest prompt type. It provides only a description of the task with no examples.</p>
+                        <pre class="bg-slate-900 text-white p-4 rounded-lg overflow-x-auto"><code>Classify the following movie review as POSITIVE, NEUTRAL, or NEGATIVE.
+
+Review: "Her" is a disturbing masterpiece. I wish there were more movies like this.
+Sentiment:</code></pre>
+                    </div>
+                    <div class="p-4 bg-white border rounded-lg shadow-sm">
+                        <h4 class="font-bold text-slate-900">One-Shot & Few-Shot Prompting</h4>
+                        <p class="text-slate-600 mb-2">Provide one (one-shot) or multiple (few-shot) examples of the task to guide the model's output. This is very effective for teaching the model a specific pattern or structure.</p>
+                        <pre class="bg-slate-900 text-white p-4 rounded-lg overflow-x-auto"><code>Parse the pizza order into JSON.
+
+EXAMPLE:
+I want a small pizza with cheese and pepperoni.
+JSON: {"size": "small", "ingredients": ["cheese", "pepperoni"]}
+
+Now, I would like a medium pizza with mushrooms.
+JSON:</code></pre>
+                    </div>
+                </div>
+            </section>
+            
+            <hr class="section-separator">
+
+            <section id="advanced-techniques">
+                <h2 class="text-3xl font-bold text-slate-900 mb-2">Advanced Prompting Techniques</h2>
+                <p class="text-lg text-slate-600 mb-6">Once you've mastered the basics, use these expert techniques to tackle more complex tasks and get even more accurate, nuanced results.</p>
+                <div class="space-y-6">
+                    <div class="p-6 bg-white border rounded-lg shadow-sm">
+                        <h4 class="text-xl font-bold text-slate-900 mb-2">Chain-of-Thought (CoT) Prompting</h4>
+                        <p class="text-slate-600 mb-4">For complex reasoning tasks, instruct the AI to "think step-by-step." This forces it to write out its reasoning process before giving the final answer, which can significantly improve accuracy.</p>
+                        <pre class="bg-slate-900 text-white p-4 rounded-lg overflow-x-auto"><code>When I was 3 years old, my partner was 3 times my age. Now, I am 20 years old. How old is my partner? Let's think step by step.</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="section-separator">
+            
+            <section id="industry-education">
+                <h2 class="text-3xl font-bold text-slate-900 mb-2">Industry: Education</h2>
+                <div class="space-y-6">
+                    <div class="p-6 bg-white border rounded-lg shadow-sm">
+                        <h4 class="text-xl font-bold text-slate-900 mb-2">Simple: Create a Quiz</h4>
+                        <pre class="bg-slate-900 text-white p-4 rounded-lg overflow-x-auto"><code>Create a 5-question multiple-choice quiz about the water cycle for a 5th-grade science class. Include an answer key.</code></pre>
+                    </div>
+                    <div class="p-6 bg-white border rounded-lg shadow-sm">
+                        <h4 class="text-xl font-bold text-slate-900 mb-2">Medium: Design a Lesson Plan</h4>
+                        <pre class="bg-slate-900 text-white p-4 rounded-lg overflow-x-auto"><code>Act as a high school history teacher. Create a lesson plan for a 1-hour class on the main causes of World War I. The plan should include:
+- Learning objectives
+- A list of key terms (e.g., "Militarism," "Alliances," "Imperialism," "Nationalism")
+- A 15-minute lecture outline
+- A 20-minute group activity
+- A simple assessment question to end the class.</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="section-separator">
+
+            <section id="industry-engineering">
+                <h2 class="text-3xl font-bold text-slate-900 mb-2">Industry: Engineering</h2>
+                <div class="space-y-6">
+                    <div class="p-6 bg-white border rounded-lg shadow-sm">
+                        <h4 class="text-xl font-bold text-slate-900 mb-2">Simple: Explain a Technical Concept</h4>
+                        <pre class="bg-slate-900 text-white p-4 rounded-lg overflow-x-auto"><code>Explain the concept of 'technical debt' to a non-technical project manager. Use a simple analogy related to home maintenance.</code></pre>
+                    </div>
+                    <div class="p-6 bg-white border rounded-lg shadow-sm">
+                        <h4 class="text-xl font-bold text-slate-900 mb-2">Medium: Review and Refactor Code</h4>
+                        <pre class="bg-slate-900 text-white p-4 rounded-lg overflow-x-auto"><code>Act as a senior software engineer specializing in Python. Review the following code for a function that calculates the Fibonacci sequence. 
+
+Identify any potential bugs, suggest improvements for efficiency, and rewrite the code with better documentation and error handling for invalid inputs (e.g., negative numbers).
+
+Original Code:
+def fibonacci(n):
+    if n <= 1:
+        return n
+    else:
+        return(fibonacci(n-1) + fibonacci(n-2))</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="section-separator">
+
+            <section id="industry-finance">
+                <h2 class="text-3xl font-bold text-slate-900 mb-2">Industry: Finance & Stock Market</h2>
+                <p class="text-lg text-slate-600 mb-6"><strong class="text-red-600">Disclaimer: AI-generated content is for informational purposes only and is not financial advice. Always verify information and consult with a qualified professional.</strong></p>
+                <div class="space-y-6">
+                    <div class="p-6 bg-white border rounded-lg shadow-sm">
+                        <h4 class="text-xl font-bold text-slate-900 mb-2">Simple: Summarize Market News</h4>
+                        <pre class="bg-slate-900 text-white p-4 rounded-lg overflow-x-auto"><code>Summarize the key financial news and analyst ratings for Apple (AAPL) over the past week. Focus on news related to product announcements and earnings. Provide the output in three bullet points.</code></pre>
+                    </div>
+                    <div class="p-6 bg-white border rounded-lg shadow-sm">
+                        <h4 class="text-xl font-bold text-slate-900 mb-2">Medium: Compare Company Earnings</h4>
+                        <pre class="bg-slate-900 text-white p-4 rounded-lg overflow-x-auto"><code>Act as a financial analyst. Compare the most recent quarterly earnings reports for Microsoft (MSFT) and Google (GOOGL). 
+
+Identify key differences in:
+- Revenue growth by segment
+- Profit margins
+- Forward-looking guidance provided by management
+
+Provide a summary of your findings in a table format.</code></pre>
+                    </div>
+                </div>
+            </section>
+
+             <hr class="section-separator">
+
+            <section id="best-practices">
+                <h2 class="text-3xl font-bold text-slate-900 mb-2">Prompting Best Practices</h2>
+                <p class="text-lg text-slate-600 mb-6">Follow these best practices to become a pro in prompt engineering.</p>
+                <ul class="list-disc ml-6 space-y-3 text-slate-600">
+                    <li><strong>Provide Examples:</strong> Use one-shot or few-shot examples to show the model the desired output.</li>
+                    <li><strong>Design with Simplicity:</strong> Prompts should be concise, clear, and easy to understand.</li>
+                    <li><strong>Be Specific About the Output:</strong> Provide details to help the model focus on what's relevant.</li>
+                    <li><strong>Use Instructions over Constraints:</strong> Tell the model what to do instead of what not to do.</li>
+                    <li><strong>Experiment:</strong> Try different models, configurations, formats, and word choices to see what works best.</li>
+                    <li><strong>Document Your Attempts:</strong> Keep a detailed record of your prompts and their results to learn and improve over time.</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // --- Gemini API Call Logic ---
+            async function callGemini(prompt, button) {
+                const originalButtonHTML = button.innerHTML;
+                button.innerHTML = '<span class="loader"></span> Thinking...';
+                button.disabled = true;
+
+                const apiKey = ""; // API key is handled by the environment
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+                
+                const payload = { contents: [{ role: "user", parts: [{ text: prompt }] }] };
+
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        const error = await response.json();
+                        throw new Error(`API call failed: ${error.error.message}`);
+                    }
+
+                    const result = await response.json();
+                    
+                    if (result.candidates && result.candidates[0].content && result.candidates[0].content.parts[0]) {
+                        return result.candidates[0].content.parts[0].text;
+                    } else {
+                        console.error("Unexpected API response structure:", result);
+                        return "Sorry, I couldn't get a valid response from the AI.";
+                    }
+                } catch (error) {
+                    console.error('Error calling Gemini API:', error);
+                    return `An error occurred: ${error.message}.`;
+                } finally {
+                    button.innerHTML = originalButtonHTML;
+                    button.disabled = false;
+                }
+            }
+            
+            // --- UI Interaction Logic ---
+            function attachAllListeners() {
+                // Generator listeners
+                document.getElementById('gemini-generic-prompt')?.addEventListener('click', async function() {
+                    const prompt = getGenericPrompt();
+                    displayGeneratedPrompt(prompt);
+                    const aiResponse = await callGemini(prompt, this);
+                    displayGeminiResponse(aiResponse, "✨ AI Response");
+                });
+            }
+            
+            function getGenericPrompt() {
+                const persona = document.getElementById('generic-persona').value;
+                const task = document.getElementById('generic-task').value;
+                const context = document.getElementById('generic-context').value;
+                const format = document.getElementById('generic-format').value;
+
+                let prompt = "";
+                if (persona) prompt += `Act as ${persona}. `;
+                if (task) prompt += `Your task is to ${task}. `;
+                if (context) prompt += `\n\nHere is some context:\n${context}\n\n`;
+                if (format) prompt += `Please provide the response in the following format: ${format}.`;
+
+                return prompt.trim();
+            }
+            
+            function displayGeneratedPrompt(promptText) {
+                const container = document.getElementById('generated-prompt-container');
+                if (!container) return; 
+                container.innerHTML = `
+                    <h3 class="text-xl font-bold mb-4">Generated Prompt</h3>
+                    <div class="bg-white p-4 rounded-lg border shadow-sm">
+                        <div class="flex justify-between items-center mb-2"><h4 class="font-semibold text-slate-900">Ready to Copy</h4><button id="copy-generated-btn" class="copy-btn">Copy</button></div>
+                        <pre class="bg-slate-900 text-white p-4 rounded-lg overflow-x-auto"><code>${promptText.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</code></pre>
+                    </div>`;
+                document.getElementById('copy-generated-btn').onclick = function() { copyToClipboard(promptText, this); };
+                container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+            
+            function displayGeminiResponse(responseText, title, isImage = false, container = null) {
+                if (!container) {
+                    container = document.getElementById('gemini-response-container');
+                    if (!container) return;
+                }
+                let responseContent;
+
+                if(isImage) {
+                    if (responseText.startsWith('data:image')) {
+                        responseContent = `<img src="${responseText}" alt="${title}" class="rounded-lg shadow-md mx-auto">`;
+                    } else {
+                        responseContent = `<p class="text-red-500">${responseText}</p>`;
+                    }
+                } else {
+                    // Simple markdown to HTML conversion
+                    responseContent = responseText
+                        .replace(/</g, "&lt;").replace(/>/g, "&gt;")
+                        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                        .replace(/`([^`]+)`/g, '<code class="bg-slate-200 text-slate-800 rounded px-1 py-0.5">$1</code>')
+                        .replace(/```([\s\S]*?)```/g, '<pre class="bg-slate-900 text-white p-4 rounded-lg my-4 overflow-x-auto"><code>$1</code></pre>')
+                        .replace(/(\r\n|\n|\r)/gm, '<br>');
+                }
+
+                container.innerHTML = `
+                    <h3 class="text-xl font-bold mb-4">${title}</h3>
+                    <div class="bg-sky-50 p-6 rounded-lg border border-sky-200 text-slate-700 space-y-4">${responseContent}</div>`;
+                container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+
+            function copyToClipboard(text, btn) {
+                 const textArea = document.createElement('textarea');
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    btn.textContent = 'Copied!';
+                    setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+                } catch (err) {
+                    console.error('Failed to copy text: ', err);
+                }
+                document.body.removeChild(textArea);
+            }
+
+            // --- Initial Load & Navigation ---
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('main section');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.toggle('active', link.getAttribute('href').substring(1) === entry.target.id);
+                        });
+                    }
+                });
+            }, { rootMargin: "-50% 0px -50% 0px" });
+
+            sections.forEach(section => observer.observe(section));
+            
+            attachAllListeners();
+        });
+    </script>
+
+</body>
+</html>
