@@ -104,7 +104,97 @@ JSON:</code></pre>
           </div>
         </section>
 
-        <!-- Other sections (Advanced, Industry, Risks, Best Practices) remain unchanged -->
+                <!-- Advanced Techniques -->
+        <section id="advanced-techniques" class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg">
+          <h2 class="text-3xl font-semibold mb-6">Advanced Prompting Techniques</h2>
+          <article class="p-6 bg-gray-50 dark:bg-gray-700 rounded-xl shadow">
+            <h4 class="font-medium mb-2">Chain-of-Thought (CoT) Prompting</h4>
+            <p class="text-gray-600 dark:text-gray-400 mb-4">Encourage the model to think step-by-step for complex reasoning tasks.</p>
+            <pre class="bg-white dark:bg-gray-800 p-4 rounded overflow-x-auto text-gray-900 dark:text-gray-100"><code>When I was 3 years old, my partner was 3 times my age. Now, I am 20 years old. How old is my partner? Let's think step by step.</code></pre>
+          </article>
+        </section>
+
+        <!-- Industry: Education -->
+        <section id="industry-education" class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg">
+          <h2 class="text-3xl font-semibold mb-6">Industry: Education</h2>
+          <article class="p-6 bg-gray-50 dark:bg-gray-700 rounded-xl shadow mb-4">
+            <h4 class="font-medium mb-2">Simple: Create a Quiz</h4>
+            <pre class="bg-white dark:bg-gray-800 p-4 rounded overflow-x-auto text-gray-900 dark:text-gray-100"><code>Create a 5-question multiple-choice quiz about the water cycle for a 5th-grade science class. Include an answer key.</code></pre>
+          </article>
+          <article class="p-6 bg-gray-50 dark:bg-gray-700 rounded-xl shadow">
+            <h4 class="font-medium mb-2">Medium: Design a Lesson Plan</h4>
+            <pre class="bg-white dark:bg-gray-800 p-4 rounded overflow-x-auto text-gray-900 dark:text-gray-100"><code>Act as a high school history teacher. Create a lesson plan for a 1-hour class on the main causes of World War I. The plan should include:
+- Learning objectives
+- Key terms: "Militarism", "Alliances", "Imperialism", "Nationalism"
+- A 15-minute lecture outline
+- A 20-minute group activity
+- A simple assessment question to end the class.</code></pre>
+          </article>
+        </section>
+
+        <!-- Industry: Engineering -->
+        <section id="industry-engineering" class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg">
+          <h2 class="text-3xl font-semibold mb-6">Industry: Engineering</h2>
+          <article class="p-6 bg-gray-50 dark:bg-gray-700 rounded-xl shadow mb-4">
+            <h4 class="font-medium mb-2">Simple: Explain a Technical Concept</h4>
+            <pre class="bg-white dark:bg-gray-800 p-4 rounded overflow-x-auto text-gray-900 dark:text-gray-100"><code>Explain the concept of 'technical debt' to a non-technical project manager using a home maintenance analogy.</code></pre>
+          </article>
+          <article class="p-6 bg-gray-50 dark:bg-gray-700 rounded-xl shadow">
+            <h4 class="font-medium mb-2">Medium: Review and Refactor Code</h4>
+            <pre class="bg-white dark:bg-gray-800 p-4 rounded overflow-x-auto text-gray-900 dark:text-gray-100"><code>Act as a senior Python engineer. Review the Fibonacci function:
+
+def fibonacci(n):
+    if n <= 1:
+        return n
+    return fibonacci(n-1) + fibonacci(n-2)
+
+Identify bugs, suggest efficiency improvements, and rewrite with documentation and input validation.</code></pre>
+          </article>
+        </section>
+
+        <!-- Industry: Finance & Stock Market -->
+        <section id="industry-finance" class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg">
+          <h2 class="text-3xl font-semibold mb-6">Industry: Finance & Stock Market</h2>
+          <p class="text-red-600 dark:text-red-400 mb-4">Disclaimer: AI-generated content is informational and not financial advice.</p>
+          <article class="p-6 bg-gray-50 dark:bg-gray-700 rounded-xl shadow mb-4">
+            <h4 class="font-medium mb-2">Simple: Summarize Market News</h4>
+            <pre class="bg-white dark:bg-gray-800 p-4 rounded overflow-x-auto text-gray-900 dark:text-gray-100"><code>Summarize key financial news and analyst ratings for Apple (AAPL) over the past week in three bullet points, focusing on product announcements and earnings.</code></pre>
+          </article>
+          <article class="p-6 bg-gray-50 dark:bg-gray-700 rounded-xl shadow">
+            <h4 class="font-medium mb-2">Medium: Compare Company Earnings</h4>
+            <pre class="bg-white dark:bg-gray-800 p-4 rounded overflow-x-auto text-gray-900 dark:text-gray-100"><code>As a financial analyst, compare the latest quarterly reports for MSFT vs GOOGL:
+- Revenue growth by segment
+- Profit margins
+- Forward-looking guidance
+Provide findings in a table.</code></pre>
+          </article>
+        </section>
+
+        <!-- Risks & Caution -->
+        <section id="risks-caution" class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg">
+          <h2 class="text-3xl font-semibold mb-4">Risks & Caution</h2>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">Be mindful of common pitfalls:</p>
+          <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+            <li><strong>Ambiguity Risk:</strong> Vague prompts yield irrelevant outputs. Be specific.</li>
+            <li><strong>Bias Caution:</strong> Avoid language that reinforces stereotypes.</li>
+            <li><strong>Overfitting Concern:</strong> Too many examples can rigidify responses.</li>
+            <li><strong>Privacy Risk:</strong> Never include sensitive data.</li>
+            <li><strong>Misinterpretation:</strong> Models may misunderstand—test thoroughly.</li>
+          </ul>
+        </section>
+
+        <!-- Best Practices -->
+        <section id="best-practices" class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg">
+          <h2 class="text-3xl font-semibold mb-4">Best Practices</h2>
+          <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+            <li><strong>Provide Examples:</strong> Use few-shot prompts to guide formatting.</li>
+            <li><strong>Design with Simplicity:</strong> Keep prompts clear and concise.</li>
+            <li><strong>Be Specific About the Output:</strong> Define structure and style.</li>
+            <li><strong>Use Instructions over Constraints:</strong> Tell the model what to do.</li>
+            <li><strong>Experiment:</strong> Vary wording, order, and examples.</li>
+            <li><strong>Document Your Attempts:</strong> Track results for iterative improvement.</li>
+          </ul>
+        </section>
       </div>
 
       <!-- Footer -->
