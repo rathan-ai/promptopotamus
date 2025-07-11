@@ -2,19 +2,24 @@
 import { useState, useEffect } from 'react';
 
 const navItems = [
-  { title: 'Tools', links: [{ href: '#generator', label: 'Prompt Builder' }] },
+  { title: 'Tools', links: [{ href: '#generator', label: 'Prompt Builder' }, { href: '#analyzer', label: 'Prompt Analyzer' }] },
   { title: 'Fundamentals', links: [
     { href: '#introduction', label: 'Introduction' },
     { href: '#basic-techniques', label: 'Basic Techniques' },
     { href: '#advanced-techniques', label: 'Advanced Techniques' },
+    { href: '#prompt-recipes', label: 'Prompt Recipes' },
   ]},
   { title: 'Industry Guides', links: [
     { href: '#industry-education', label: 'Education' },
     { href: '#industry-engineering', label: 'Engineering' },
     { href: '#industry-finance', label: 'Finance & Stock Market' },
   ]},
+  { title: 'Advanced Topics', links: [
+    { href: '#exploring-models', label: 'Exploring Models' },
+  ]},
   { title: 'Best Practices', links: [
       { href: '#best-practices', label: 'Best Practices' },
+      { href: '#further-reading', label: 'Further Reading' },
       { href: '#risks-caution', label: 'Risks & Caution' },
   ]},
 ];
