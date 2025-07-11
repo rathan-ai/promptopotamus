@@ -7,6 +7,7 @@ const navItems = [
     { href: '#introduction', label: 'Introduction' },
     { href: '#basic-techniques', label: 'Basic Techniques' },
     { href: '#advanced-techniques', label: 'Advanced Techniques' },
+    { href: '#prompt-recipes', label: 'Prompt Recipes' },
   ]},
   { title: 'Industry Guides', links: [
     { href: '#industry-education', label: 'Education' },
