@@ -5,16 +5,17 @@ const navItems = [
   { title: 'Tools', links: [{ href: '#generator', label: 'Prompt Builder' }] },
   { title: 'Fundamentals', links: [
     { href: '#introduction', label: 'Introduction' },
-    { href: '#llm-config', label: 'LLM Configuration' },
     { href: '#basic-techniques', label: 'Basic Techniques' },
     { href: '#advanced-techniques', label: 'Advanced Techniques' },
   ]},
-  { title: 'Prompting Techniques', links: [
-    { href: '#code-prompting', label: 'Code Prompting' },
-    { href: '#image-prompting', label: 'Image Prompting' },
+  { title: 'Industry Guides', links: [
+    { href: '#industry-education', label: 'Education' },
+    { href: '#industry-engineering', label: 'Engineering' },
+    { href: '#industry-finance', label: 'Finance & Stock Market' },
   ]},
   { title: 'Best Practices', links: [
       { href: '#best-practices', label: 'Best Practices' },
+      { href: '#risks-caution', label: 'Risks & Caution' },
   ]},
 ];
 
