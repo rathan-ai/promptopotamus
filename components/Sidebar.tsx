@@ -5,18 +5,16 @@ const navItems = [
   { title: 'Tools', links: [{ href: '#generator', label: 'Prompt Builder' }] },
   { title: 'Fundamentals', links: [
     { href: '#introduction', label: 'Introduction' },
+    { href: '#llm-config', label: 'LLM Configuration' },
     { href: '#basic-techniques', label: 'Basic Techniques' },
     { href: '#advanced-techniques', label: 'Advanced Techniques' },
-    { href: '#prompt-recipes', label: 'Prompt Recipes' },
   ]},
-  { title: 'Industry Guides', links: [
-    { href: '#industry-education', label: 'Education' },
-    { href: '#industry-engineering', label: 'Engineering' },
-    { href: '#industry-finance', label: 'Finance & Stock Market' },
+  { title: 'Prompting Techniques', links: [
+    { href: '#code-prompting', label: 'Code Prompting' },
+    { href: '#image-prompting', label: 'Image Prompting' },
   ]},
   { title: 'Best Practices', links: [
       { href: '#best-practices', label: 'Best Practices' },
-      { href: '#risks-caution', label: 'Risks & Caution' },
   ]},
 ];
 
@@ -38,7 +36,7 @@ export default function Sidebar() {
     }, []);
     const toggleTheme = () => document.documentElement.classList.toggle('dark');
     return (
-        <aside className="w-full md:w-72 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 p-6 sticky top-0">
+        <aside className="w-full md:w-72 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 p-6 sticky top-0 h-screen overflow-y-auto">
             <h1 className="text-2xl font-extrabold text-primary-600 dark:text-indigo-400 mb-8">Prompting Guide</h1>
             <nav className="space-y-2">
                 {navItems.map((section, i) => (
